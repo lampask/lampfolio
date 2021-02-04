@@ -1,0 +1,17 @@
+module.exports = {
+  pathPrefix: '/',
+  title: 'Lampask',
+  titleAlt: 'Lampask',
+  description: 'The site where I showcase my projects and skills. Here you can find a couple of details about me and my contact info.',
+  url: 'https://lmpsk.me',
+  siteUrl: 'https://lmpsk.me',
+  siteLanguage: 'en',
+  logo: 'static/logo/logo.png',
+  banner: 'static/logo/banner.png',
+  favicon: 'static/logo/favicon.png',
+  shortName: 'Lampfolio',
+  author: 'lmpsk',
+  themeColor: '#3e7bf2',
+  backgroundColor: '#d3e0ff',
+  twitter: '@lmp1911',
+};
