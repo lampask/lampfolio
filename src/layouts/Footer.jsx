@@ -5,8 +5,6 @@ const Wrapper = styled.footer`
   position: relative;
   padding-top: 2rem;
   bottom: 0;
-  box-shadow: ${(props) => props.theme.shadow.footer};
-  background: ${(props) => props.theme.gradient.leftToRight};
   font-family: ${(props) => props.theme.fontFamily.body};
   font-weight: 500;
   @media (max-width: ${(props) => props.theme.breakpoints.s}) {

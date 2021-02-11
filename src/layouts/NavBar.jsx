@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import Headroom from 'react-headroom';
-import ThemeChanger from '../components/ThemeChanger';
+import { Logo, TagLink } from '../components';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -12,10 +12,12 @@ const StyledLink = styled(Link)`
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
   font-family: ${(props) => props.theme.fontFamily.body};
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1em;
+  color: white;
   align-items: center;
   a {
     color: ${(props) => props.theme.colors.white.base};
@@ -25,23 +27,27 @@ const Nav = styled.nav`
       color: ${(props) => props.theme.colors.white.grey};
     }
   }
+  div {
+    display: flex;
+    flex-direction: row;
+  }
+  p {
+    margin: auto;
+  }
 `;
 
-const NavBar = () => (
+const NavBar = ({ children }) => (
   <Headroom calcHeightOnResize disableInlineStyles>
-    {/* <StyledLink to="/">
-      <img src={logo} alt="Gatsby Logo" />
-    </StyledLink> */}
-    {/* <Nav>
-      <Link to="/">Home</Link>
-      <Link to="/blog">Blog</Link>
-      <Link to="/about">About</Link>
-    </Nav> */}
-    {
       <Nav>
-        <ThemeChanger />
+        <div>
+          <Logo />
+          <p>Portfolio v1.1</p>
+          {children}
+        </div>
+        <div>
+          <TagLink>Activity</TagLink>
+        </div>
       </Nav>
-    }
   </Headroom>
 );
 

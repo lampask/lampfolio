@@ -67,9 +67,9 @@ export const theme = {
   },
   fontFamily: {
     // eslint-disable-next-line
-    body: `Open Sans,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+    body: `Courier, Courier Prime, Inconsolata, monospace`,
     // eslint-disable-next-line
-    heading: `Candal, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+    heading: `Courier, Courier Prime, Inconsolata, monospace`,
   },
   layout: {
     article: '46rem',

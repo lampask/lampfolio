@@ -24,8 +24,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/images/`,
-        name: 'images',
+        path: `${__dirname}/src/assets/`,
+        name: 'assets',
       },
     },
     {
@@ -68,7 +68,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-emotion',
       options: {
-        autoLabel: process.env.NODE_ENV !== 'production',
+        autoLabel: 'dev-only',
         // eslint-disable-next-line
         labelFormat: `[filename]--[local]`,
       },
@@ -94,7 +94,6 @@ module.exports = {
         icon: config.favicon,
       },
     },
-    'gatsby-plugin-dark-mode'
     // 'gatsby-plugin-offline',
   ],
 };
