@@ -20,7 +20,7 @@ const Text = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-auto-rows: auto;
     grid-gap: 1rem;
     margin-top: 3rem;
@@ -31,7 +31,7 @@ const Projects = (props) => {
         <Wrapper>
             <Text>
                 <h1>Projects</h1>
-                <p>Here is listed the majority of projects that I have been worlking on.</p>
+                <p>Here is listed the majority of projects that I have worked or am working on.</p>
                 {props.children}
                 <input type="text"></input>
                 <Grid>

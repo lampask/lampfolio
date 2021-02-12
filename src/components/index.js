@@ -8,5 +8,6 @@ import Button from './Button';
 import TagLink from './TagLink';
 import Card from './Card';
 import Pagination from './Pagination';
+import Tag from './Tag';
 
-export { PostList, Intro, SEO, Counter, Logo, Model, Button, TagLink, Card, Pagination };
+export { PostList, Intro, SEO, Counter, Logo, Model, Button, TagLink, Card, Pagination, Tag };

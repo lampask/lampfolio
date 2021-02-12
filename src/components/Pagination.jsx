@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-    margin-top: 3rem;
+    margin: 2rem 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
