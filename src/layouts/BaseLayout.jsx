@@ -31,10 +31,10 @@ const BaseLayout = ({ children }) => (
 						width: 100%;
 						height: 100vh;
 						overflow: visible;
-						scroll-behavior: smooth;
 					}
 
 					body {
+						scroll-behavior: smooth;
 						display: flex;
 						flex-direction: column;
 						min-height: 100vh;

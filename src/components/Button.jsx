@@ -45,14 +45,23 @@ const StyledButton = styled.button`
 `;
 
 const Button = (props) => {
-	return (
-		<AnchorLink href={props.to}>
-			<StyledButton {...props}>{props.children}</StyledButton>
-		</AnchorLink>
-	);
+	if (props.internal != null ? props.internal : false) {
+		return (
+			<AnchorLink to={props.to}>
+				<StyledButton {...props}>{props.children}</StyledButton>
+			</AnchorLink>
+		);
+	} else {
+		return (
+			<a href={props.to}>
+				<StyledButton {...props}>{props.children}</StyledButton>
+			</a>
+		);
+	}
 };
 
 Button.propTypes = {
+	internal: PropTypes.bool,
 	to: PropTypes.string,
 	children: PropTypes.node,
 };

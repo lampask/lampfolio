@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import {
@@ -118,17 +118,24 @@ const searchChanged = (e) => {
 	}
 };
 
-const Intro = () => (
-	<Wrapper>
-		<CLine onClick={(e) => focusMethod(e)}>
-			{'>'}&nbsp;
-			<TypedText>
-				<Progressbar />
-				<Text contentEditable="true" onKeyDown={(e) => searchChanged(e)} />
-				<Cursor>&nbsp;</Cursor>
-			</TypedText>
-		</CLine>
-	</Wrapper>
-);
+const Intro = () => {
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	});
+
+	return (
+		<Wrapper>
+			<CLine onClick={(e) => focusMethod(e)}>
+				{'>'}&nbsp;
+				<TypedText>
+					<Progressbar />
+					<Text contentEditable="true" onKeyDown={(e) => searchChanged(e)} />
+					<Cursor>&nbsp;</Cursor>
+				</TypedText>
+			</CLine>
+		</Wrapper>
+	);
+};
 
 export default Intro;

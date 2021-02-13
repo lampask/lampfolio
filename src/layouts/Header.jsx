@@ -50,6 +50,7 @@ const Links = styled.div`
 		fill: white;
 		padding-right: 10px;
 		&:hover {
+			cursor: pointer;
 			width: 41px;
 		}
 	}
@@ -75,7 +76,7 @@ const Header = ({ children }) => {
 			<Model />
 			<Text>
 				<Links>
-					<a href="https://github.com/lampask" target="_blank" rel="noreferrer">
+					<TagLink noIcon noStyle to="https://github.com/lampask" target="_blank">
 						<img
 							onMouseOver={() => setTag('@lampask')}
 							onFocus={() => setTag('@lampask')}
@@ -84,8 +85,8 @@ const Header = ({ children }) => {
 							src="icons/github.svg"
 							alt=""
 						/>
-					</a>
-					<a href="https://gitlab.com/lampask" target="_blank" rel="noreferrer">
+					</TagLink>
+					<TagLink noIcon noStyle href="https://gitlab.com/lampask" target="_blank">
 						<img
 							onMouseOver={() => setTag('@lampask')}
 							onFocus={() => setTag('@lampask')}
@@ -94,8 +95,8 @@ const Header = ({ children }) => {
 							src="icons/gitlab.svg"
 							alt=""
 						/>
-					</a>
-					<a href="https://twitter.com/lmp1911" target="_blank" rel="noreferrer">
+					</TagLink>
+					<TagLink noIcon noStyle href="https://twitter.com/lmp1911" target="_blank">
 						<img
 							onMouseOver={() => setTag('@lmp1911')}
 							onFocus={() => setTag('@lmp1911')}
@@ -104,11 +105,10 @@ const Header = ({ children }) => {
 							src="icons/twitter.svg"
 							alt=""
 						/>
-					</a>
-					<a
-						href="https://www.linkedin.com/in/adam-grambli%C4%8Dka-643658205/"
+					</TagLink>
+					<TagLink noIcon noStyle
+						to="https://www.linkedin.com/in/adam-grambli%C4%8Dka-643658205/"
 						target="_blank"
-						rel="noreferrer"
 					>
 						<img
 							onMouseOver={() => setTag('Adam Gramblička')}
@@ -118,7 +118,7 @@ const Header = ({ children }) => {
 							src="icons/linkedin.svg"
 							alt=""
 						/>
-					</a>
+					</TagLink>
 				</Links>
 				<small>{tag}</small>
 				<h1>Adam Gramblička</h1>
@@ -165,7 +165,7 @@ const Header = ({ children }) => {
 					└── footer.md <br />
 				</Subtitle>
 				<Buttons>
-					<Button to="/#about">Next</Button>
+					<Button internal to="/#about">Next</Button>
 					<Button to="mailto:someone@lmpsk.me">Contact me</Button>
 					<Button to="#">My CV</Button>
 					<Button
