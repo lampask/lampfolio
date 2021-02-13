@@ -1,18 +1,24 @@
 const config = require('./config/site');
 const dotenv = require('dotenv');
+const fs = require("fs");
 
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`
-});
+// try load env vars from file
+if (fs.existsSync(`.env.${process.env.NODE_ENV}`)) {
+    dotenv.config({
+		path: `.env.${process.env.NODE_ENV}`
+	});
+} else {
+	dotenv.config();
+}
 
 module.exports = {
   siteMetadata: {
     ...config,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-material-ui',
-    'gatsby-plugin-catch-links',
+	'gatsby-plugin-react-helmet',
+	'gatsby-plugin-loadable-components-ssr',
+	'gatsby-plugin-anchor-links',
     {
       resolve: "gatsby-plugin-remote-images",
       options: {
@@ -94,6 +100,6 @@ module.exports = {
         icon: config.favicon,
       },
     },
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
   ],
 };

@@ -12,6 +12,7 @@
       "warn",
       "single"
     ],
+    "indent": ["error", "tab"],
     "no-unused-vars": [
       1
     ],
@@ -24,6 +25,11 @@
     "prettier/prettier": ["error", {
       "endOfLine": "auto"
     }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "extends": [
     "eslint:recommended",
