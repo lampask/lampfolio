@@ -55,6 +55,7 @@
     "react-dom": "^17.0.1",
     "react-headroom": "^3.1.0",
     "react-helmet": "^6.1.0",
+    "react-tag-autocomplete": "^6.1.0",
     "react-three-fiber": "^5.3.18",
     "react-typography": "^0.16.19",
     "three": "^0.125.2",

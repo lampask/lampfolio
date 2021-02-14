@@ -30,14 +30,20 @@ const Pagination = (props) => {
 	const [currPage, setCurrPage] = useState(props.currPage ? props.currPage : 0);
 	const num = props.numPages != null ? props.numPages : 1;
 
-	const changePage = (e) => setCurrPage(parseInt(e.currentTarget.dataset.index.toString()));
+	const changePage = (e) => {
+		const page = parseInt(e.currentTarget.dataset.index.toString());
+		setCurrPage(page);
+		props.change(page);
+	};
 
 	return (
 		<Wrapper>
 			<button
 				className="control"
 				onClick={() => {
-					setCurrPage((num + ((currPage - 1) % num)) % num);
+					const pNum = (num + ((currPage - 1) % num)) % num;
+					setCurrPage(pNum);
+					props.change(pNum);
 				}}
 			>
 				{'<'}
@@ -50,7 +56,9 @@ const Pagination = (props) => {
 			<button
 				className="control"
 				onClick={() => {
-					setCurrPage((currPage + 1) % num);
+					const pNum = (currPage + 1) % num;
+					setCurrPage(pNum);
+					props.change(pNum);
 				}}
 			>
 				{'>'}
@@ -64,4 +72,5 @@ export default Pagination;
 Pagination.propTypes = {
 	numPages: PropTypes.number,
 	currPage: PropTypes.number,
+	change: PropTypes.func,
 };

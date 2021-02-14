@@ -37,8 +37,8 @@ const SingleMesh = (props) => {
 };
 
 SingleMesh.propTypes = {
-	geometry: PropTypes.object,
-	material: PropTypes.object,
+	geometry: PropTypes.string,
+	material: PropTypes.string,
 };
 
 export default SingleMesh;

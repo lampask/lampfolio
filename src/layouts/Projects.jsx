@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, forwardRef } from 'react';
 import styled from '@emotion/styled';
-import { Card, Pagination } from '../components';
+import { Card, Pagination, Search } from '../components';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
@@ -25,26 +25,92 @@ const Grid = styled.div`
 	grid-auto-rows: auto;
 	grid-gap: 1rem;
 	margin-top: 3rem;
+	p {
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
 `;
 
-const Projects = (props) => {
+const Projects = forwardRef((props, ref) => {
+	const [tags, setTags] = useState([]);
+	const [searchQuery, setSearchQuery] = useState('');
+	const [limit] = useState(9);
+	const [pageNodeIndex, setPageNodeIndex] = useState(0);
+
+	const validateTags = (_tags) => {
+		setTags(_tags);
+		setSearchQuery('');
+	};
+
+	const validateQuery = (query) => {
+		setSearchQuery(query);
+	};
+
+	const pageChange = (page) => {
+		setPageNodeIndex(0 + page * limit);
+	};
+
+	const inTags = (str) => {
+		if (tags.length != 0) {
+			var result = false;
+			if (str != null) {
+				const arr = str.split(',');
+				arr.forEach((item) => {
+					tags.forEach((tag) => {
+						if (tag.name == item) result = true;
+					});
+				});
+			}
+			return result;
+		}
+		return true;
+	};
+
+	const isQueryPart = (str) => {
+		if (searchQuery != '') {
+			var result = false;
+			if (str != null) {
+				if (str.toLowerCase().includes(searchQuery.toLowerCase())) {
+					result = true;
+				}
+			}
+			return result;
+		}
+		return true;
+	};
+
+	// Setup
+
+	const filtered = props.data.allGoogleSpreadsheetData.nodes
+		.filter((project) => inTags(project.tags) || inTags(project.language))
+		.filter((project) => isQueryPart(project.title) || isQueryPart(project.description));
+
+	const pageNum = Math.ceil(filtered.length / limit);
+
 	return (
 		<Wrapper id="projects">
 			<Text>
 				<h1>Projects</h1>
 				<p>Here is listed the majority of projects that I have worked or am working on.</p>
 				{props.children}
-				<input type="text"></input>
+				<Search validateTags={validateTags} validateQuery={validateQuery} ref={ref} />
 				<Grid>
-					{props.data.allGoogleSpreadsheetData.nodes.map((project) => (
-						<Card key={project.id} data={project} />
-					))}
+					{filtered.length != 0 ? (
+						filtered
+							.slice(pageNodeIndex, pageNodeIndex + limit)
+							.map((project) => <Card key={project.id} data={project} />)
+					) : (
+						<p>No matching projects found.</p>
+					)}
 				</Grid>
-				<Pagination numPages={8} />
+				<Pagination change={pageChange} numPages={pageNum} />
 			</Text>
 		</Wrapper>
 	);
-};
+});
+
+Projects.displayName = 'Projects';
 
 Projects.propTypes = {
 	data: PropTypes.shape({

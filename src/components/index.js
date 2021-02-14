@@ -8,5 +8,6 @@ import TagLink from './TagLink';
 import Card from './Card';
 import Pagination from './Pagination';
 import Tag from './Tag';
+import Search from './Search';
 
-export { Intro, SEO, Counter, Logo, Model, Button, TagLink, Card, Pagination, Tag };
+export { Intro, SEO, Counter, Logo, Model, Button, TagLink, Card, Pagination, Tag, Search };

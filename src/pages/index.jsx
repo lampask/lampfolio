@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import { Intro, SEO } from '../components';
@@ -6,14 +6,20 @@ import { Layout, Header, Footer, About, Projects } from '../layouts';
 import ProTypes from 'prop-types';
 
 const Index = ({ data }) => {
+	const search = useRef();
+
+	const getSearchRef = () => {
+		return search;
+	};
+
 	return (
 		<Layout>
 			<SEO />
 			<Helmet title={'Lampask'} />
 			<Intro />
-			<Header />
+			<Header projRef={getSearchRef} />
 			<About />
-			<Projects data={data} />
+			<Projects ref={search} data={data} />
 			<Footer />
 		</Layout>
 	);

@@ -119,7 +119,6 @@ const searchChanged = (e) => {
 };
 
 const Intro = () => {
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	});

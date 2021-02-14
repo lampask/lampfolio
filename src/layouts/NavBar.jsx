@@ -39,7 +39,7 @@ const NavBar = ({ children }) => (
 				{children}
 			</div>
 			<div>
-				<TagLink>Activity</TagLink>
+				<TagLink to="">Activity</TagLink>
 			</div>
 		</Nav>
 	</Headroom>

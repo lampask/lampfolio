@@ -68,7 +68,7 @@ const Buttons = styled.div`
 	}
 `;
 
-const Header = ({ children }) => {
+const Header = (props) => {
 	const [tag, setTag] = useState('...');
 	const clear = () => setTag('...');
 	return (
@@ -86,7 +86,7 @@ const Header = ({ children }) => {
 							alt=""
 						/>
 					</TagLink>
-					<TagLink noIcon noStyle href="https://gitlab.com/lampask" target="_blank">
+					<TagLink noIcon noStyle to="https://gitlab.com/lampask" target="_blank">
 						<img
 							onMouseOver={() => setTag('@lampask')}
 							onFocus={() => setTag('@lampask')}
@@ -96,7 +96,7 @@ const Header = ({ children }) => {
 							alt=""
 						/>
 					</TagLink>
-					<TagLink noIcon noStyle href="https://twitter.com/lmp1911" target="_blank">
+					<TagLink noIcon noStyle to="https://twitter.com/lmp1911" target="_blank">
 						<img
 							onMouseOver={() => setTag('@lmp1911')}
 							onFocus={() => setTag('@lmp1911')}
@@ -106,7 +106,9 @@ const Header = ({ children }) => {
 							alt=""
 						/>
 					</TagLink>
-					<TagLink noIcon noStyle
+					<TagLink
+						noIcon
+						noStyle
 						to="https://www.linkedin.com/in/adam-grambli%C4%8Dka-643658205/"
 						target="_blank"
 					>
@@ -125,18 +127,30 @@ const Header = ({ children }) => {
 				<Subtitle>
 					I am <Counter birthday={new Date(2004, 2, 19)} /> year old developer, maker and tinkerer. <br />I
 					create things using{' '}
-					<TagLink internal color="green">
+					<TagLink
+						internal
+						color="green"
+						to="/#projects"
+						onClick={() => {
+							var searchBar = props.projRef().current;
+							searchBar.clearInput();
+							searchBar.addTag({ id: 'c#', name: 'c#' });
+						}}
+					>
 						Node
 					</TagLink>
 					,{' '}
-					<TagLink internal color="orange">
+					<TagLink internal color="orange" to="/#projects">
 						JavaScript
 					</TagLink>
 					,{' '}
-					<TagLink internal color="blue">
+					<TagLink internal color="blue" to="/#projects">
 						Python
 					</TagLink>{' '}
-					and <TagLink internal>others.</TagLink>
+					and{' '}
+					<TagLink internal to="/#projects">
+						others.
+					</TagLink>
 					<br />
 					<br />
 					<b>⌄ You can read more here:</b> <br />
@@ -160,15 +174,21 @@ const Header = ({ children }) => {
 					<br />
 					├── experiences
 					<br />
-					├── <TagLink target="_blank">blog.html</TagLink>
+					├──{' '}
+					<TagLink target="_blank" to="#">
+						blog.html
+					</TagLink>
 					<br />
 					└── footer.md <br />
 				</Subtitle>
 				<Buttons>
-					<Button internal to="/#about">Next</Button>
+					<Button internal to="/#about">
+						Next
+					</Button>
 					<Button to="mailto:someone@lmpsk.me">Contact me</Button>
 					<Button to="#">My CV</Button>
 					<Button
+						to="#"
 						onClick={(e) => {
 							window.close();
 							e.currentTarget.innerHTML = ': (';
@@ -178,7 +198,7 @@ const Header = ({ children }) => {
 						Cancel
 					</Button>
 				</Buttons>
-				{children}
+				{props.children}
 			</Text>
 		</Wrapper>
 	);
@@ -188,6 +208,7 @@ export default Header;
 
 Header.propTypes = {
 	children: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
+	projRef: PropTypes.func,
 };
 
 Header.defaultProps = {

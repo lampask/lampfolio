@@ -3,22 +3,29 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
+const Style = styled.span`
+	button {
+		background: transparent;
+		color: white;
+		transition: color 0.1s, background 0.2s;
+	}
+	button:hover {
+		color: ${(props) => (props.color != 'transparent' ? '#161616' : 'white')};
+		background: ${(props) => props.color};
+	}
+`;
+
 const StyledButton = styled.button`
-	${(props) => { 
+	${(props) => {
 		if (props.noStyle != null ? !props.noStyle : true) {
 			return `
 				border: transparent;
 				border-radius: 5px;
-				background: transparent;
-				color: white;
 				font-style: oblique;
-				transition: color 0.1s, background 0.2s;
 				-moz-box-sizing: border-box;
 				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 				&:hover {
-					color: ${(props) => (props.color != 'transparent' ? '#161616' : 'white')};
-					background: ${(props) => props.color};
 					text-decoration: underline;
 					cursor: pointer;
 				}
@@ -40,7 +47,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledLink = styled.a`
-	${(props) => { 
+	${(props) => {
 		if (props.noIcon != null ? !props.noIcon : true) {
 			return `
 				&[target='_blank']:after {
@@ -52,21 +59,27 @@ const StyledLink = styled.a`
 					content: '';
 				}
 				`;
-			}
-		}}
+		}
+	}}
 `;
 
 const TagLink = (props) => {
 	if (props.internal != null ? props.internal : false) {
 		return (
 			<AnchorLink to={props.to}>
-				<StyledButton color={props.color != null ? props.color : 'transparent'}>{props.children}</StyledButton>
+				<Style color={props.color != null ? props.color : 'transparent'}>
+					<StyledButton onClick={props.onClick}>{props.children}</StyledButton>
+				</Style>
 			</AnchorLink>
 		);
 	} else {
 		return (
 			<StyledLink noIcon={props.noIcon} href={props.to} {...props} rel="noreferer">
-				<StyledButton noStyle={props.noStyle} color={props.color != null ? props.color : 'transparent'}>{props.children}</StyledButton>
+				<Style color={props.color != null ? props.color : 'transparent'}>
+					<StyledButton noStyle={props.noStyle} onClick={props.onClick}>
+						{props.children}
+					</StyledButton>
+				</Style>
 			</StyledLink>
 		);
 	}
@@ -78,6 +91,7 @@ TagLink.propTypes = {
 	noStyle: PropTypes.bool,
 	color: PropTypes.string,
 	to: PropTypes.string.isRequired,
+	onClick: PropTypes.func,
 	children: PropTypes.node,
 };
 
