@@ -43,7 +43,9 @@ const Tags = styled.div`
 const Card = (props) => {
 	const fluid = props.data.productImage.childImageSharp.fluid;
 	return (
-		<Wrapper>
+		<Wrapper role="button" tabIndex={0} onClick={() => {
+			props.dialogRef().current.openDialog();
+		}}>
 			<Image fluid={{ ...fluid, aspectRatio: 1 }} objectFit="contain" loading="lazy" draggable={false} />
 			<Details>
 				<Title className="title">{props.data.title}</Title>

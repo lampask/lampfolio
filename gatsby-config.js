@@ -18,6 +18,7 @@ module.exports = {
   plugins: [
 	'gatsby-plugin-react-helmet',
 	'gatsby-plugin-loadable-components-ssr',
+	'gatsby-plugin-portal',
 	'gatsby-plugin-anchor-links',
     {
       resolve: "gatsby-plugin-remote-images",

@@ -1,5 +1,6 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, useRef, forwardRef } from 'react';
 import styled from '@emotion/styled';
+import ProjectDialog from '../components/dialogs/ProjectDialog';
 import { Card, Pagination, Search } from '../components';
 import PropTypes from 'prop-types';
 
@@ -37,6 +38,8 @@ const Projects = forwardRef((props, ref) => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [limit] = useState(9);
 	const [pageNodeIndex, setPageNodeIndex] = useState(0);
+
+	const dialog = useRef();
 
 	const validateTags = (_tags) => {
 		setTags(_tags);
@@ -88,6 +91,10 @@ const Projects = forwardRef((props, ref) => {
 
 	const pageNum = Math.ceil(filtered.length / limit);
 
+	const getDialog = () => {
+		return dialog;
+	};
+
 	return (
 		<Wrapper id="projects">
 			<Text>
@@ -99,11 +106,13 @@ const Projects = forwardRef((props, ref) => {
 					{filtered.length != 0 ? (
 						filtered
 							.slice(pageNodeIndex, pageNodeIndex + limit)
-							.map((project) => <Card key={project.id} data={project} />)
+							.map((project) => <Card dialogRef={getDialog} key={project.id} data={project} />)
 					) : (
 						<p>No matching projects found.</p>
 					)}
 				</Grid>
+				<button onClick={() => dialog.current.openDialog()}>aaaaa</button>
+				<ProjectDialog ref={dialog} />
 				<Pagination change={pageChange} numPages={pageNum} />
 			</Text>
 		</Wrapper>

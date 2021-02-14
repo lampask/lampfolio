@@ -5,7 +5,7 @@ const headroom = css`
 	.headroom-wrapper {
 		position: fixed;
 		width: 100%;
-		z-index: 2000;
+		z-index: 1;
 		top: 0;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
