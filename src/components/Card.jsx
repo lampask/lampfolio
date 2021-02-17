@@ -44,7 +44,7 @@ const Card = (props) => {
 	const fluid = props.data.productImage.childImageSharp.fluid;
 	return (
 		<Wrapper role="button" tabIndex={0} onClick={() => {
-			props.dialogRef().current.openDialog();
+			props.dialogRef().current.openDialog(props.data);
 		}}>
 			<Image fluid={{ ...fluid, aspectRatio: 1 }} objectFit="contain" loading="lazy" draggable={false} />
 			<Details>

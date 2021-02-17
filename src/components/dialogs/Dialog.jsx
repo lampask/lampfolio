@@ -21,6 +21,7 @@ const DialogWrapper = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		padding-bottom: 0;
 
 		button {
 			border: none;
@@ -29,10 +30,13 @@ const DialogWrapper = styled.div`
 			color: white;
 			cursor: pointer;
 			font-size: 30px;
+			padding: 0;
+			margin: 0;
 		}
 	}
 	.dialog-content {
 		padding: 1rem;
+		padding-top: 0;
 	}
 `;
 
@@ -56,14 +60,15 @@ const Dialog = forwardRef((props, ref) => {
     ref,
     () => {
       return {
-        openDialog: () => handleOpen(),
+        openDialog: (data) => handleOpen(data),
         closeDialog: () => handleClose(),
       }
     }
   )
 
-  const handleOpen = () => {
-    setDisplay(true);
+  const handleOpen = (data) => {
+	setDisplay(true);
+	props.dataCallback(data);
   }
 
   const handleClose = () => {
@@ -71,7 +76,6 @@ const Dialog = forwardRef((props, ref) => {
   }
 
   if (display) {
-	console.log("open");
     return (
 		<Portal>
 			<Overlay />

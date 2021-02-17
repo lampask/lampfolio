@@ -111,7 +111,6 @@ const Projects = forwardRef((props, ref) => {
 						<p>No matching projects found.</p>
 					)}
 				</Grid>
-				<button onClick={() => dialog.current.openDialog()}>aaaaa</button>
 				<ProjectDialog ref={dialog} />
 				<Pagination change={pageChange} numPages={pageNum} />
 			</Text>
